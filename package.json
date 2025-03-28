@@ -39,5 +39,21 @@
     "vite-plugin-lib-inject-css": "^2.2.1",
     "vitest": "3.0.7",
     "vue-tsc": "^2.2.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodeworld/vue-autocomplete-plugin"
+  },
+  "homepage": "https://github.com/nodeworld/vue-autocomplete-plugin#readme",
+  "sponsor": {
+    "url": "https://buymeacoffee.com/nodeworld"
+  },
+  "keywords": [
+    "Vue",
+    "Autocomplete",
+    "Vue Autocomplete",
+    "Autotype",
+    "Autosuggest",
+    "Autocomplete plugin"
+  ]
 }
