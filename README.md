@@ -1,2 +1,1 @@
-# vue-autocomplete-plugin
-Vue autocomplete plugin
+# Vue Component npm Example

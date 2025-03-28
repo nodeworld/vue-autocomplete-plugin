@@ -1,0 +1,43 @@
+{
+  "name": "vue-autocomplete-plugin",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue-autocomplete-plugin.umd.cjs",
+  "module": "./dist/vue-autocomplete-plugin.js",
+  "types": "./dist/main.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-autocomplete-plugin.js",
+      "require": "./dist/vue-autocomplete-plugin.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "preview": "vite preview",
+    "test": "vitest --",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "vue": "3.2.25"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.13",
+    "@vitejs/plugin-vue": "5.2.1",
+    "@vitest/ui": "3.0.7",
+    "@vue/test-utils": "2.4.6",
+    "@vue/tsconfig": "0.5.0",
+    "jsdom": "22.1.0",
+    "typescript": "~5.7.2",
+    "vite": "6.2.3",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-lib-inject-css": "^2.2.1",
+    "vitest": "3.0.7",
+    "vue-tsc": "^2.2.4"
+  }
+}
