@@ -8,13 +8,12 @@
   ],
   "main": "./dist/vue-autocomplete-plugin.umd.cjs",
   "module": "./dist/vue-autocomplete-plugin.js",
-  "types": "./dist/main.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/main.d.ts",
       "import": "./dist/vue-autocomplete-plugin.js",
       "require": "./dist/vue-autocomplete-plugin.umd.js"
-    },
-    "./dist/style.css": "./dist/style.css"
+    }
   },
   "scripts": {
     "dev": "vite",
