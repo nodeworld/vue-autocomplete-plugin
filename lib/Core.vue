@@ -628,14 +628,10 @@
   };
   
   const setWidth = () => {
-    console.log('Set width');
     const listWidth = listContainer.value?.style;
     // TODO: Don't use document. use Ref.
     const inputFieldWidth = document.getElementById('searchInput')?.clientWidth;
-    console.log(listWidth, inputFieldWidth);
     if (listWidth && inputFieldWidth) {
-      console.log('Here');
-      console.log(listWidth.width, inputFieldWidth);
       listWidth.width = inputFieldWidth + 'px';
     }
     return;
