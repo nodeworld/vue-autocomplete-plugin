@@ -3,7 +3,6 @@ import Autocomplete from './Autocomplete.vue'
 
 type CustomClassType = {
     parentContainerClass?: string;
-    inputFieldContainerClass?: string;
     inputFieldClass?: string;
     listContainerClass?: string;
     dropdownUnorderedListClass?: string;
@@ -18,7 +17,6 @@ type CustomClassType = {
   
   type CustomStyleType = {
     parentContainerStyle?: any;
-    inputFieldContainerStyle?: any;
     inputFieldStyle?: any;
     listContainerStyle?: any;
     dropdownUnorderedListStyle?: any;
@@ -27,6 +25,7 @@ type CustomClassType = {
     inputLabelContainerStyle?: any;
     inputLabelStyle?: any;
     viewMoreStyle?: any;
+    customSpinnerStyle?: any;
   };
   
   type CustomAriaType = {

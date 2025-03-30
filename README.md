@@ -194,6 +194,7 @@ import { type CustomClassType } from 'vue-autocomplete-plugin';
 | `listContainerClass`          | `No` | Adds class to `div` that surrounds `ul` of dropdown list. |
 | `dropdownUnorderedListClass`  | `No` | Adds class to `ul` of dropdown list. |
 | `dropdownListClass`           | `No` | Adds class to each `li` items|
+| `disableListClass `           | `No` | Add class to disabled `li` items |
 | `noResultClass`               | `No` | Adds class to separate `li` item to show no result message. |
 | `inputLabelClass`             | `No` | Adds class to `<label>` field |
 | `inputLabelContainerClass`    | `No` | Adds class to surrounding `div` of input label.|
