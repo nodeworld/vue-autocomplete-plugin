@@ -139,8 +139,8 @@
   const props = withDefaults(defineProps<Iprops>(), {
     initialVisibleData: 1000,
     scrollThreshold: 3,
-    placeholder: 'Select Value.',
-    inputLabel: 'Enter or Search value',
+    placeholder: 'Select value...',
+    inputLabel: 'Enter or search value',
     noSearchResultMessage: 'No results found.',
     showLoadingSpinner: true,
     showdropDownArrow: true,

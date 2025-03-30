@@ -252,7 +252,6 @@ describe('ARIA Testing', () => {
     expect(wrapper.html()).toContain('autocomplete-li-element');
     const length = await wrapper.findAll('li').length;
     expect(DROPDOWN_DATA.length).toBe(length);
-    console.log(wrapper.findAll('li')[0].html());
     // First dropdown list value is Apple as per dropdownData.
     expect(wrapper.findAll('li')[0].html()).toContain(`aria-label=\"Apple\"`);
   });
