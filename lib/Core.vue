@@ -121,7 +121,6 @@
   
   type CustomClassType = {
     parentContainerClass?: string;
-    inputFieldContainerClass?: string;
     inputFieldClass?: string;
     listContainerClass?: string;
     dropdownUnorderedListClass?: string;
@@ -136,7 +135,6 @@
   
   type CustomStyleType = {
     parentContainerStyle?: any;
-    inputFieldContainerStyle?: any;
     inputFieldStyle?: any;
     listContainerStyle?: any;
     dropdownUnorderedListStyle?: any;
@@ -145,6 +143,7 @@
     inputLabelContainerStyle?: any;
     inputLabelStyle?: any;
     viewMoreStyle?: any;
+    customSpinnerStyle?: any;
   };
   
   type CustomAriaType = {

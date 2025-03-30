@@ -15,7 +15,6 @@
       <InputLabel
         v-if="props.showInputlabel"
         :input-label="props.inputLabel"
-        :input-label-container-class="props.customClass?.inputFieldContainerClass"
         :input-label-container-style="props.customStyle?.inputLabelContainerStyle"
         :input-label-class="props.customClass?.inputLabelClass"
         :input-label-style="props.customStyle?.inputLabelStyle"
@@ -72,7 +71,6 @@
     totalRecords?: number;
     disableProperty?: string;
     noSearchResultMessage?: string;
-    isNumber?: boolean;
     isAutoCompleteDisabled?: boolean;
     isCustomSpinner?: boolean;
     showLoadingSpinner?: boolean;
@@ -99,7 +97,6 @@
   
   type CustomClassType = {
     parentContainerClass?: string;
-    inputFieldContainerClass?: string;
     inputFieldClass?: string;
     listContainerClass?: string;
     dropdownUnorderedListClass?: string;
@@ -114,7 +111,6 @@
   
   type CustomStyleType = {
     parentContainerStyle?: any;
-    inputFieldContainerStyle?: any;
     inputFieldStyle?: any;
     listContainerStyle?: any;
     dropdownUnorderedListStyle?: any;
@@ -123,6 +119,7 @@
     inputLabelContainerStyle?: any;
     inputLabelStyle?: any;
     viewMoreStyle?: any;
+    customSpinnerStyle?: any;
   };
   
   type CustomAriaType = {
@@ -160,7 +157,6 @@
     // defaultValue: undefined,
     // totalRecords: undefined,
     // disableProperty: undefined,
-    isNumber: false,
     // customClass: undefined,
     // customStyle: undefined,
     inspectAutoCompleteList: false,

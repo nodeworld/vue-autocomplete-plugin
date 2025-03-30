@@ -33,7 +33,7 @@
             : '',
         ]"
         :style="
-          customStyle && customStyle.dropdownListStyle
+          customStyle?.dropdownListStyle
             ? customStyle.dropdownListStyle
             : {}
         "
@@ -50,6 +50,7 @@
         v-if="showLoadingSpinner && showSpinner && isCustomSpinner"
         class="auto-complete-list-spinner"
         :class="customClass && customClass.customSpinnerClass"
+        :style="customStyle?.customSpinnerStyle ? customStyle.customSpinnerStyle : {}"
       ></li>
       <li
         v-if="filteredData.length <= 0 && isOnFocus"
@@ -126,7 +127,6 @@
   
   export type CustomClassType = {
     parentContainerClass?: string;
-    inputFieldContainerClass?: string;
     inputFieldClass?: string;
     listContainerClass?: string;
     dropdownUnorderedListClass?: string;
@@ -141,7 +141,6 @@
   
   export type CustomStyleType = {
     parentContainerStyle?: any;
-    inputFieldContainerStyle?: any;
     inputFieldStyle?: any;
     listContainerStyle?: any;
     dropdownUnorderedListStyle?: any;
@@ -150,6 +149,7 @@
     inputLabelContainerStyle?: any;
     inputLabelStyle?: any;
     viewMoreStyle?: any;
+    customSpinnerStyle?: any;
   };
   
   export type CustomAriaType = {
