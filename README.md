@@ -184,7 +184,7 @@ Please note that, if you are using JSX template, you may not be able to import t
 #### Import CustomClassType from the module (Optional).
 
 ```js
-import { CustomClassType } from 'vue-autocomplete-plugin';
+import { type CustomClassType } from 'vue-autocomplete-plugin';
 ```
 
 | CustomClassTypes              | Required    | Description |
@@ -223,7 +223,7 @@ Please note that, if you are using JSX template, you may not be able to import t
 #### Import CustomStyleType from the module (Optional).
 
 ```js
-import { CustomStyleType } from 'vue-autocomplete-plugin';
+import { type CustomStyleType } from 'vue-autocomplete-plugin';
 ```
 
 | CustomStyleTypes | Required | Description |
@@ -266,7 +266,7 @@ Please note that, if you are using JSX template, you may not be able to import t
 #### Import CustomAriaType from the module (Optional).
 
 ```js
-import { CustomAriaType } from 'vue-autocomplete-plugin';
+import { type CustomAriaType } from 'vue-autocomplete-plugin';
 ```
 
 | Attributes | Required | Description |
