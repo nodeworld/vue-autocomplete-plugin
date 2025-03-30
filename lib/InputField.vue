@@ -69,8 +69,6 @@
   }
   
   function blurEvent(event: any) {
-    console.log('Blur event trigger');
-    console.log(event);
     props.onBlur?.(event);
   }
   
@@ -119,17 +117,6 @@
   .arrow.down {
     border-top-color: #000;
   }
-  
-  ::-webkit-input-placeholder {
-    text-transform: capitalize;
-  }
-  
-  ::-moz-placeholder {
-    text-transform: capitalize;
-  }
-  
-  ::-ms-placeholder {
-    text-transform: capitalize;
-  }
+
   </style>
   
