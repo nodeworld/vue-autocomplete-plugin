@@ -682,7 +682,7 @@
       return;
     }
     isOnFocus.value = true;
-    // setWidth();
+    setWidth();
     // const getListId = listContainer.value?.style;
     // // TODO: Don't use document. use Ref.
     // const getInputId = document.getElementById('searchInput')?.clientWidth;
@@ -856,7 +856,7 @@
     if (props.isAutoCompleteDisabled) {
       return;
     }
-    if (!isOnFocus) {
+    if (!isOnFocus.value) {
       searchValue.value?.['searchValue']?.focus();
     } else {
       isOnFocus.value = false;
@@ -930,28 +930,22 @@
         if (typeof props.defaultValue === 'object') {
           getValue = autocompleteDropdownData.value.find(
             (dt: any) =>
-              dt[props.objectProperty!] ===
-              props.defaultValue[props.objectProperty!]
-          );
+              dt[props.objectProperty!].toString()?.toLowerCase()?.trim() === props.defaultValue[props.objectProperty!].toString()?.toLowerCase()?.trim());
         } else {
           getValue = autocompleteDropdownData.value.find(
-            (dt: any) => dt[props.objectProperty!] === props.defaultValue
-          );
+            (dt: any) => dt[props.objectProperty!].toString()?.toLowerCase()?.trim() === props.defaultValue.toString()?.toLowerCase()?.trim());
         }
         if (getValue) {
-          searchValue.value!['searchValue']!.value =
-            getValue[props.objectProperty];
+          searchValue.value!['searchValue']!.value = getValue[props.objectProperty];
         }
       } else {
         let getValue;
         if (typeof props.defaultValue === 'object') {
           getValue = autocompleteDropdownData.value.find(
-            (dt: any) => dt === props.defaultValue[props.objectProperty!]
-          );
+            (dt: any) => dt?.toString()?.toLowerCase()?.trim() === props.defaultValue[props.objectProperty!].toString()?.toLowerCase()?.trim());
         } else {
           getValue = autocompleteDropdownData.value.find(
-            (dt: any) => dt === props.defaultValue
-          );
+            (dt: any) => dt.toString()?.toLowerCase()?.trim() === props.defaultValue.toString()?.toLowerCase()?.trim());
         }
         if (getValue) {
           searchValue.value!['searchValue']!.value = getValue;

@@ -112,13 +112,24 @@ To run tests with Vitest UI for viewing test results in the screen, run below co
 |`inspectAutoCompleteList`|`boolean`|`No`|Default value is false. When set to true, it will not allow hiding the dropdown list on blur. This is helpful to inspect the dropdown list in dom and is recommended only for development.|
 |`showInputlabel`|`boolean`|`No`|Default value is false. making it true will show the input text label.|
 |`inputLabel`|`string`|`No`|Default value is `Select a value` and can be customized. `inputLabel` will be shown when `showInputlabel` is set to true.|
-|`showLoadingSpinner` | `boolean`|`No` | Shows the spinner at the botton of the list if lazy loaded. Default is `false` |
+|`showLoadingSpinner` | `boolean`|`No` | Shows the spinner at the botton of the list if lazy loaded. Default is `true` |
 |`isCustomSpinner`|`boolean`|`No`|Set as `true` to set customize spinner during lazy load or paginated API calls. Set your own class properties in `customClass.customSpinnerClass`. `showLoadingSpinner` must be set to `true` to show the spinner.|
 |`aria`|`object`|`No`|Helps to set aria roles at various levels of DOM to provide Accessible Rich Internet Application. Check below for more details.|
 |`optViewMoreOnlyForApiCall`|`boolean`|`No`|Default is `false`. When set to `true`, API Call will not be executed on reaching the end of the scroll, instead `View More` button has to be clicked to call the API or any custom function.|
 |`showViewMore`|`boolean`|`No`|Default is `true`. `View More` List will be shown at the end of dropdown if user has configured lazy loading (`triggerApiLoadEvent` && `isApiLoad`). `View More` will appear only when API call is to be executed.|
 |`viewMoreText`|`string`|`No`|Default text is `View More`. It can be updated through `viewMoreText` as per requirement|
 |`loadAllDataAtOnce`|`boolean`|`No`|Default value is `false`. If set to true, all the dropdown list will be loaded at once without lazy loading. May not be recommended for large data set to avoid performance issues.|
+
+# Useful Tips
+
+Incase the Autocomplete component is mounted on a nested or multiple nested child components and if the dropdownData is rendered or fetched only during onMounted life-cycle, consider initializing the module with v-if condition to make sure Autocomplete component loads as expected.
+
+```js
+<Autocomplete v-if="data.length > 0" :dropdownData="data"/>
+```
+
+Adding v-if condition is solely based on the application's business logic and is just optional.
+
 
 # Using the module
 
