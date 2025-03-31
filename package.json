@@ -22,8 +22,8 @@
     "test": "vitest --",
     "test:ui": "vitest --ui"
   },
-  "dependencies": {
-    "vue": "3.2.25"
+  "peerDependencies": {
+    "vue": "^3.2.25"
   },
   "devDependencies": {
     "@types/node": "^22.13.13",
