@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     cssCodeSplit: true,
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
+      entry: resolve(__dirname, 'lib/index.ts'),
       name: 'Autocomplete',
       // the proper extensions will be added
       fileName: 'vue-autocomplete-plugin',

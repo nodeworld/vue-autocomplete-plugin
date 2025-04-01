@@ -1,16 +1,20 @@
 {
   "name": "vue-autocomplete-plugin",
-  "private": true,
   "version": "1.0.0",
+  "author": "nodeworld",
+  "description": "A simple, powerful, lightweight and customizable autocomplete tool programmed for Vue projects!",
+  "private": false,
+  "license": "MIT",
   "type": "module",
   "files": [
     "dist"
   ],
   "main": "./dist/vue-autocomplete-plugin.umd.cjs",
   "module": "./dist/vue-autocomplete-plugin.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/main.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/vue-autocomplete-plugin.js",
       "require": "./dist/vue-autocomplete-plugin.umd.js"
     }
@@ -53,6 +57,10 @@
     "Vue Autocomplete",
     "Autotype",
     "Autosuggest",
-    "Autocomplete plugin"
+    "Autocomplete plugin",
+    "typeahead",
+    "Autosearch",
+    "Vue Autosearch",
+    "Vue3 Autocomplete"
   ]
 }
