@@ -6,7 +6,7 @@ A simple, powerful, lightweight and customizable autocomplete tool programmed fo
 
 # Requirements
 
-Vue 3.2.25 or higher versions. ``
+Vue 3.2.25 or higher versions.
 
 ## Package information
 
@@ -116,7 +116,6 @@ To run tests with Vitest UI for viewing test results in the screen, run below co
 |`isCustomSpinner`|`boolean`|`No`|Set as `true` to set customize spinner during lazy load or paginated API calls. Set your own class properties in `customClass.customSpinnerClass`. `showLoadingSpinner` must be set to `true` to show the spinner.|
 |`aria`|`object`|`No`|Helps to set aria roles at various levels of DOM to provide Accessible Rich Internet Application. Check below for more details.|
 |`optViewMoreOnlyForApiCall`|`boolean`|`No`|Default is `false`. When set to `true`, API Call will not be executed on reaching the end of the scroll, instead `View More` button has to be clicked to call the API or any custom function.|
-|`showViewMore`|`boolean`|`No`|Default is `true`. `View More` List will be shown at the end of dropdown if user has configured lazy loading (`triggerApiLoadEvent` && `isApiLoad`). `View More` will appear only when API call is to be executed.|
 |`viewMoreText`|`string`|`No`|Default text is `View More`. It can be updated through `viewMoreText` as per requirement|
 |`loadAllDataAtOnce`|`boolean`|`No`|Default value is `false`. If set to true, all the dropdown list will be loaded at once without lazy loading. May not be recommended for large data set to avoid performance issues.|
 
@@ -190,8 +189,6 @@ When `scrollThreshold` is set to 1, the virtual dropdown list will hold the reco
 
 ## Adding Custom CSS Class to autocomplete
 
-Please note that, if you are using JSX template, you may not be able to import the type CustomClassType. However you can refer this documentation and pass the custom classes without importing type.
-
 #### Import CustomClassType from the module (Optional).
 
 ```js
@@ -230,8 +227,6 @@ customClassType: CustomClassType = {
 
 ## Adding Custom CSS styles to autocomplete
 
-Please note that, if you are using JSX template, you may not be able to import the type CustomStyleType. However you can refer this documentation and pass the custom styles without importing type.
-
 #### Import CustomStyleType from the module (Optional).
 
 ```js
@@ -266,14 +261,13 @@ customStyle: CustomStyleType = {
     :customStyle="customStyle">
 </Autocomplete>
 ```
+## Debugging Autocomplete list during development
 
 For inspecting the classes or styles during develeopment, pass `inspectAutoCompleteList` as `true` so that the dropdown list will not close which will help to inspect the list. But don't forget to remove or make it `false` during production deployment
 
 ## Adding Accessible Rich Internet Applications (ARIA)
 
 #### ARIA provides easy access to the content for people with disabilities with help of screen reader.
-
-Please note that, if you are using JSX template, you may not be able to import the type CustomAriaType. However you can refer this documentation and pass the custom styles without importing type.
 
 #### Import CustomAriaType from the module (Optional).
 
@@ -300,11 +294,11 @@ import { type CustomAriaType } from 'vue-autocomplete-plugin';
 
 - Create App.vue and main.ts (to mount the app) in the src folder and execute `npm run dev`.
 
-- Or alternatively you can skip the above step and use `npm link` to test the feature locally.
+- Or alternatively you can skip the above step and use `npm link` to test the feature locally with a vue web application.
 
 - In `vue-autocomplete-plugin` module, run `npm link`. This will add the `vue-autocomplete-plugin` in node_modules locally.
 
-- From the webapp vue project run `npm link vue-autocomplete-plugin`.
+- From the vue web application run `npm link vue-autocomplete-plugin`.
 
 - Import the Autocomplete module from `vue-autocomplete-plugin` like usual npm package and start using the module.
 

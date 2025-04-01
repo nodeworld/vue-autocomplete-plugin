@@ -42,7 +42,6 @@
         :is-scroll-threshold-required="props.isScrollThresholdRequired"
         :inspect-auto-complete-list="props.inspectAutoCompleteList"
         :view-more-text="props.viewMoreText"
-        :show-view-more="props.showViewMore"
         :opt-view-more-only-for-api-call="props.optViewMoreOnlyForApiCall"
         :aria="props.aria"
         :trigger-on-focus-event="props.triggerOnFocusEvent"
@@ -83,7 +82,6 @@
     isScrollThresholdRequired?: boolean;
     inspectAutoCompleteList?: boolean;
     viewMoreText?: string;
-    showViewMore?: boolean;
     optViewMoreOnlyForApiCall?: boolean;
     aria?: CustomAriaType;
     triggerOnFocusEvent?: Function;
@@ -146,7 +144,6 @@
     // disableListFn: undefined,
     isScrollThresholdRequired: true,
     viewMoreText: 'View more',
-    showViewMore: true,
     optViewMoreOnlyForApiCall: false,
     isApiLoad: false,
     isCustomSpinner: false,
