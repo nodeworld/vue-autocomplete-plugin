@@ -74,6 +74,7 @@
             :isApiLoad="isApiLoad"
             :displayViewMoreButton="displayViewMoreButton"
             :viewMoreRef="viewMoreElement"
+            :optViewMoreOnlyForApiCall="optViewMoreOnlyForApiCall"
           />
         </ul>
       </div>
