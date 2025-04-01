@@ -69,7 +69,6 @@
             :isCustomSpinner="isCustomSpinner"
             :onViewMore="onViewMore"
             :viewMoreText="viewMoreText!"
-            :showViewMore="showViewMore"
             :isEventEmitted="isEventEmitted"
             :showSpinner="showSpinner"
             :isApiLoad="isApiLoad"
@@ -107,7 +106,6 @@
     isScrollThresholdRequired?: boolean;
     inspectAutoCompleteList?: boolean;
     viewMoreText?: string;
-    showViewMore?: boolean;
     optViewMoreOnlyForApiCall?: boolean;
     aria?: CustomAriaType;
     triggerOnFocusEvent?: Function;

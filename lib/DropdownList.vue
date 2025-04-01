@@ -6,7 +6,7 @@
         :id="'autocomplete-li-element-' + i"
         tabindex="0"
         class="autocomplete-data-list"
-        :aria-label="data + ''"
+        :aria-label="objectProperty ? data[objectProperty] + '' : data + ''"
         @click="onSelect(i, data, true)"
         :ref="(el: any) => functionRef(el, i)"
         :aria-disabled="
@@ -73,7 +73,7 @@
       </li>
       <li
         v-if="
-          showViewMore &&
+          optViewMoreOnlyForApiCall &&
           !isEventEmitted &&
           !showSpinner &&
           isApiLoad &&
@@ -117,7 +117,7 @@
     isCustomSpinner?: boolean;
     onViewMore: Function;
     viewMoreText: string;
-    showViewMore?: boolean;
+    optViewMoreOnlyForApiCall?: boolean;
     isEventEmitted?: boolean;
     showSpinner?: boolean;
     isApiLoad?: boolean;
