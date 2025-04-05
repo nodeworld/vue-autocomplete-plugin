@@ -1,6 +1,6 @@
 {
   "name": "vue-autocomplete-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "nodeworld",
   "description": "A simple, powerful, lightweight and customizable autocomplete tool programmed for Vue projects!",
   "private": false,
@@ -31,13 +31,13 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.13",
-    "@vitejs/plugin-vue": "5.2.1",
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vitest/ui": "3.0.7",
     "@vue/test-utils": "2.4.6",
     "@vue/tsconfig": "0.5.0",
     "jsdom": "22.1.0",
     "typescript": "~5.7.2",
-    "vite": "6.2.3",
+    "vite": "^6.2.3",
     "vite-plugin-dts": "^4.5.3",
     "vite-plugin-lib-inject-css": "^2.2.1",
     "vitest": "3.0.7",

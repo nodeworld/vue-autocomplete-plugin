@@ -32,6 +32,7 @@ Documentation is now available on [modulejs.org](https://modulejs.org)
 
 | Package version | Description | 
 | :-------- | :-----------|
+| 1.0.1   | Updated `vite`  & `@vitejs/plugin-vue` versions with `^` in devDependencies as they continuously address vulnerabilties in their package. Upgrading from lower version to 1.0.1 is safe without any configuration change. |
 | 1.0.0   | Vue autocomplete search package |
 
 ## Other information
