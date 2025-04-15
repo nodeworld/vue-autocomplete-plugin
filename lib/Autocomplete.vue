@@ -51,6 +51,7 @@
         :broadcast-selected-value="props.broadcastSelectedValue"
         :isApiLoad="props.isApiLoad"
         :load-all-data-at-once="props.loadAllDataAtOnce"
+        :additional-data="props.additionalData"
       />
     </div>
   </template>
@@ -91,6 +92,7 @@
     triggerClearSelectionEvent?: Function;
     isApiLoad?: boolean;
     loadAllDataAtOnce?: boolean;
+    additionalData?: AdditionalDataType;
   }
   
   type CustomClassType = {
@@ -130,6 +132,16 @@
     ariaInputLabel?: string;
     ariaViewMore?: string;
   };
+
+  type AdditionalDataType = {
+    relativeSearch?: RelativeSearchType | boolean;
+  }
+
+  type RelativeSearchType = {
+    includeOnly?: string[];
+    customFunction?: Function;
+    fullMatch?: boolean;
+  }
   
   const props = withDefaults(defineProps<Iprops>(), {
     initialVisibleData: 1000,

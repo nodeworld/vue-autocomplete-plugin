@@ -116,6 +116,7 @@
     triggerClearSelectionEvent?: Function;
     isApiLoad?: boolean;
     loadAllDataAtOnce?: boolean;
+    additionalData?: AdditionalDataType;
   }
   
   type CustomClassType = {
@@ -155,6 +156,16 @@
     ariaInputLabel?: string;
     ariaViewMore?: string;
   };
+
+  type AdditionalDataType = {
+    relativeSearch?: RelativeSearchType | boolean;
+  }
+
+  type RelativeSearchType = {
+    includeOnly?: string[];
+    customFunction?: Function;
+    fullMatch?: boolean;
+  }
   
   const props = defineProps<Iprops>();
   
@@ -806,7 +817,9 @@
         // return;
       }
       if (props.objectProperty) {
-        const getSearchData = autocompleteDropdownData.value.filter((dt: any) =>
+        let getSearchData;
+        if (!isDeepSearch()) {
+          getSearchData = autocompleteDropdownData.value.filter((dt: any) =>
           dt[props.objectProperty!]
             ?.toString()
             .toLowerCase()
@@ -814,7 +827,10 @@
               searchValue.value?.['searchValue']?.value.toLowerCase().trim()
             )
         );
-        if (getSearchData.length > 0) {
+        } else {
+          getSearchData = deepSearch();
+        }
+        if (getSearchData && getSearchData.length > 0) {
           const getFirstSetData = getSearchData.slice(
             0,
             props.initialVisibleData
@@ -917,6 +933,74 @@
   onUnmounted(() => {
     window.removeEventListener('resize', autocompleteResizeListener);
   });
+
+  function isDeepSearch(): boolean {
+    return props.additionalData && props.additionalData.relativeSearch ? true : false;
+  }
+
+  function callCustomFunctionInDeepSearch() {
+    const relativeSearch = props.additionalData?.relativeSearch;
+    if (typeof relativeSearch === 'object' && Object.prototype.hasOwnProperty.call(relativeSearch, 'customFunction') && typeof relativeSearch.customFunction === 'function') {
+      return new Promise((resolve, reject) => {
+        const result: any[] = relativeSearch.customFunction!(searchValue.value?.['searchValue']?.value, autocompleteDropdownData.value);
+        if (result) { resolve(result); }
+        reject([]);
+      });
+    }
+    return [];
+  }
+
+    /* isSetDefault & defaultValue are passed from onMounted lifecycle. */
+    function deepSearch(isSetDefault?: boolean, defaultValue?: any) {
+    const relativeSearch = props.additionalData?.relativeSearch;
+    if (!relativeSearch) { return [] }
+    let searchAttributes: string[] = [];
+    let isCustomFunction = false;
+    if (typeof relativeSearch === 'boolean' && relativeSearch === true) {
+      for (const dObj in autocompleteDropdownData.value[0]) {
+        searchAttributes.push(dObj);
+      }
+    } else if (typeof relativeSearch === 'object' && Object.keys(relativeSearch).length > 0) {
+      if (Object.prototype.hasOwnProperty.call(relativeSearch, 'includeOnly') && relativeSearch.includeOnly!.length > 0) {
+        searchAttributes = [...relativeSearch.includeOnly!];
+      } else {
+        for (const dObj in autocompleteDropdownData.value[0]) {
+          searchAttributes.push(dObj);
+        }
+      }
+      if (Object.prototype.hasOwnProperty.call(relativeSearch, 'customFunction') && typeof relativeSearch.customFunction === 'function') {
+        isCustomFunction = true;
+      }
+    }
+    if (searchAttributes.length > 0) {
+      if (isSetDefault) {
+        return runInitDeepSearch(defaultValue?.toString()?.toLowerCase().trim(), searchAttributes)
+      }
+      if (!isCustomFunction) {
+        return runDeepSearch(searchValue.value?.['searchValue']?.value.toLowerCase().trim(), searchAttributes)
+      }
+      return callCustomFunctionInDeepSearch();
+    }
+    return [];
+  }
+
+  function runDeepSearch(searchKey: string, attributes: string[]) {
+    if (!searchKey) { return [] };
+    return autocompleteDropdownData.value.filter((item: any) => attributes.some((key) => {
+      const value = item[key];
+      return value.toString().toLowerCase().includes(searchKey)
+    }));
+  }
+
+  /* Called only during onMounted lifecycle to set defaultValue */
+  function runInitDeepSearch(searchKey: string, attributes: string[]) {
+    if (!searchKey) { return [] };
+    return autocompleteDropdownData.value.find((item: any) => attributes.some((key) => {
+      const value = item[key];
+      return value.toString().toLowerCase() === searchKey
+    }));
+  }
+  
   
   onMounted(() => {
     // 1st useEffect
@@ -927,12 +1011,21 @@
       if (props.objectProperty) {
         let getValue;
         if (typeof props.defaultValue === 'object') {
-          getValue = autocompleteDropdownData.value.find(
+          if (!isDeepSearch()) {
+            getValue = autocompleteDropdownData.value.find(
             (dt: any) =>
               dt[props.objectProperty!].toString()?.toLowerCase()?.trim() === props.defaultValue[props.objectProperty!].toString()?.toLowerCase()?.trim());
+            
+          } else {
+            getValue = deepSearch(true, props.defaultValue[props.objectProperty!]);
+          }
         } else {
-          getValue = autocompleteDropdownData.value.find(
-            (dt: any) => dt[props.objectProperty!].toString()?.toLowerCase()?.trim() === props.defaultValue.toString()?.toLowerCase()?.trim());
+          if (!isDeepSearch()) {
+            getValue = autocompleteDropdownData.value.find(
+              (dt: any) => dt[props.objectProperty!].toString()?.toLowerCase()?.trim() === props.defaultValue.toString()?.toLowerCase()?.trim());
+          } else {
+            getValue = deepSearch(true, props.defaultValue);
+          }
         }
         if (getValue) {
           searchValue.value!['searchValue']!.value = getValue[props.objectProperty];
