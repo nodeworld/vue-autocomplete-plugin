@@ -1,6 +1,6 @@
 {
   "name": "vue-autocomplete-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "nodeworld",
   "description": "A simple, powerful, lightweight and customizable autocomplete tool programmed for Vue projects!",
   "private": false,
