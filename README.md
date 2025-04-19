@@ -32,6 +32,7 @@ Documentation is now available on [modulejs.org](https://modulejs.org)
 
 | Package version | Description | 
 | :-------- | :-----------|
+| 1.0.2   | Recommended. Relative Search feature has been introduced to search the entire object. Refer API usage for details. Upgrading from lower version to 1.0.1 is safe without any configuration change. |
 | 1.0.1   | Updated `vite`  & `@vitejs/plugin-vue` versions with `^` in devDependencies as they continuously address vulnerabilties in their package. Upgrading from lower version to 1.0.1 is safe without any configuration change. |
 | 1.0.0   | Vue autocomplete search package |
 
@@ -82,7 +83,7 @@ To run tests with Vitest UI for viewing test results in the screen, run below co
 | Vue Autocomplete With API Lazyload    | [Vue Autocomplete with API Lazyload](https://stackblitz.com/edit/vue-autocomplete-api-call-lazy-load)|
 | Vue Autocomplete Disable list with a custom function    | [Vue Autocomplete Disable list with a custom function](https://stackblitz.com/edit/vue-autocomplete-disabled-v2)|
 | Vue Autocomplete View More feature Example    | [Vue Autocomplete View More feature Example    ](https://stackblitz.com/edit/vue-autocomplete-large-data-with-view-more)|
-
+| Vue Autocomplete Relative Search | [Vue Autocomplete Relative Search](https://stackblitz.com/edit/vue-autocomplete-relative-search) |
 
 
 ## API Usage
@@ -121,6 +122,8 @@ To run tests with Vitest UI for viewing test results in the screen, run below co
 |`aria`|`object`|`No`|Helps to set aria roles at various levels of DOM to provide Accessible Rich Internet Application. Check below for more details.|
 |`viewMoreText`|`string`|`No`|Default text is `View More`. It can be updated through `viewMoreText` as per requirement|
 |`loadAllDataAtOnce`|`boolean`|`No`|Default value is `false`. If set to true, all the dropdown list will be loaded at once without lazy loading. May not be recommended for large data set to avoid performance issues.|
+| `additionalData` | `object` | `No` | `Undefined` by default. Has `relativeSearch` as one of the property.  |
+| `relativeSearch` | `boolean` or `object` | `No` | Not enabled by default. `relativeSearch` is available under `additionalData` props as an attribute. If `relativeSearch` is set as `true`, entire object will be searched during input search. `relativeSearch` can also be set as an object to set more custom options during search. More details found below |
 
 # Useful Tips
 
@@ -132,6 +135,52 @@ Incase the Autocomplete component is mounted on a nested or multiple nested chil
 
 Adding v-if condition is solely based on the application's business logic and is just optional.
 
+# Relative Search
+
+Relative search is breaking feature introduced in `1.0.2` version which allows to search the whole object. `relativeSearch` is available under `additionalData` props. 
+
+`dropdownData` should be an object and `objectProperty` should be available to make `relativeSearch` work.
+
+If `relativeSearch` is set to `true`, entire object will be searched during the input search.
+
+```js
+const dropdownData = `[{ sku: 12345, name: 'Apple'}, { sku: 67890, name: 'Samsung'}]`
+```
+
+```html
+<Autocomplete
+    :dropdownData="dropdownData"
+    objectProperty="name"
+    :broadcastSelectedValue="YOUR_CUSTOM_FUNTION($event)"
+    :additionalData="{ relativeSearch: true }">
+</Autocomplete>
+```
+
+In the above example, when searched with the inputs 12345 or Apple, first object will be filtered as produced as result.
+
+`relativeSearch` also supports custom settings apart from boolean.
+
+| Object | Type  | Required | Description |
+| `includeOnly` | `string[]` | `optional` | Searches only the value of mentioned keys or attributes in the object. |
+| `customFunction` | `Function` | `optional` | Implementing your own custom function for relative search. This is helpful when the object has nested objects. Example: `[{ sku: 12345, name: 'Apple', country: [{ name: 'USA'}, { name: 'China'}]}, { sku: 67890, name: 'Samsung', country: [{ name: 'USA'}, { name: 'China'}] }]`. The module will not search the country array as they are nested and the module would not predict the nested objects or arrays as they are based on project requirements. In this case you can write your own `customFunction`. |
+
+```js
+const dropdownData = `[{ sku: 12345, name: 'Apple'}, { sku: 67890, name: 'Samsung'}]`
+```
+
+```html
+<Autocomplete
+    :dropdownData="dropdownData"
+    :broadcastSelectedValue="YOUR_CUSTOM_FUNTION($event)"
+    :additionalData="{ relativeSearch: { includeOnly: ['sku'] } }">
+</Autocomplete>
+```
+
+In the above example, only the sku attribute in the object will be searched.
+
+Checkout stackblitz example for good example.
+
+It's your responsibility to check the performance impact when using the relative search for large data.
 
 # Using the module
 

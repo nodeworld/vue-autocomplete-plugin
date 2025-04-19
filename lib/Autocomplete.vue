@@ -140,7 +140,6 @@
   type RelativeSearchType = {
     includeOnly?: string[];
     customFunction?: Function;
-    fullMatch?: boolean;
   }
   
   const props = withDefaults(defineProps<Iprops>(), {

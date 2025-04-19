@@ -164,7 +164,6 @@
   type RelativeSearchType = {
     includeOnly?: string[];
     customFunction?: Function;
-    fullMatch?: boolean;
   }
   
   const props = defineProps<Iprops>();
