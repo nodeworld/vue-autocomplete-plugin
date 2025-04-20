@@ -84,7 +84,7 @@ To run tests with Vitest UI for viewing test results in the screen, run below co
 | Vue Autocomplete Disable list with a custom function    | [Vue Autocomplete Disable list with a custom function](https://stackblitz.com/edit/vue-autocomplete-disabled-v2)|
 | Vue Autocomplete View More feature Example    | [Vue Autocomplete View More feature Example    ](https://stackblitz.com/edit/vue-autocomplete-large-data-with-view-more)|
 | Vue Autocomplete Relative Search | [Vue Autocomplete Relative Search](https://stackblitz.com/edit/vue-autocomplete-relative-search) |
-
+| Vue Autocomplete Relative Search  with conditions | [Vue Autocomplete Relative Search with conditions](https://stackblitz.com/edit/vue-autocomplete-relative-search-with-conditions) |
 
 ## API Usage
 
@@ -122,8 +122,8 @@ To run tests with Vitest UI for viewing test results in the screen, run below co
 |`aria`|`object`|`No`|Helps to set aria roles at various levels of DOM to provide Accessible Rich Internet Application. Check below for more details.|
 |`viewMoreText`|`string`|`No`|Default text is `View More`. It can be updated through `viewMoreText` as per requirement|
 |`loadAllDataAtOnce`|`boolean`|`No`|Default value is `false`. If set to true, all the dropdown list will be loaded at once without lazy loading. May not be recommended for large data set to avoid performance issues.|
-| `additionalData` | `object` | `No` | `Undefined` by default. Has `relativeSearch` as one of the property.  |
-| `relativeSearch` | `boolean` or `object` | `No` | Not enabled by default. `relativeSearch` is available under `additionalData` props as an attribute. If `relativeSearch` is set as `true`, entire object will be searched during input search. `relativeSearch` can also be set as an object to set more custom options during search. More details found below |
+| `additionalData` | `object` | `No` | `Undefined` by default. Has `relativeSearch` as one of the property.|
+| `relativeSearch` | `boolean` or `object` | `No` | Not enabled by default. `relativeSearch` is available under `additionalData` props. If `relativeSearch` is set as `true`, entire object will be searched during input search. `relativeSearch` can also be set as an object to set more custom options during search. More details found in below sections. |
 
 # Useful Tips
 
@@ -139,7 +139,7 @@ Adding v-if condition is solely based on the application's business logic and is
 
 Relative search is breaking feature introduced in `1.0.2` version which allows to search the whole object. `relativeSearch` is available under `additionalData` props. 
 
-`dropdownData` should be an object and `objectProperty` should be available to make `relativeSearch` work.
+`dropdownData` should be an object and `objectProperty` should be available to make `relativeSearch` feature work.
 
 If `relativeSearch` is set to `true`, entire object will be searched during the input search.
 
@@ -156,13 +156,16 @@ const dropdownData = `[{ sku: 12345, name: 'Apple'}, { sku: 67890, name: 'Samsun
 </Autocomplete>
 ```
 
-In the above example, when searched with the inputs 12345 or Apple, first object will be filtered as produced as result.
+In the above example, when searched with the inputs 12345 or Apple, first object will be filtered and produced as result.
 
-`relativeSearch` also supports custom settings apart from boolean.
+`relativeSearch` also supports custom settings apart from boolean. Below attributes are supported in `relativeSearch` object.
 
-| Object | Type  | Required | Description |
-| `includeOnly` | `string[]` | `optional` | Searches only the value of mentioned keys or attributes in the object. |
-| `customFunction` | `Function` | `optional` | Implementing your own custom function for relative search. This is helpful when the object has nested objects. Example: `[{ sku: 12345, name: 'Apple', country: [{ name: 'USA'}, { name: 'China'}]}, { sku: 67890, name: 'Samsung', country: [{ name: 'USA'}, { name: 'China'}] }]`. The module will not search the country array as they are nested and the module would not predict the nested objects or arrays as they are based on project requirements. In this case you can write your own `customFunction`. |
+| Property | Type  | Required | Description |
+| `includeOnly` | `string[]` | `optional` | Searches only the value of mentioned keys or attributes available in the object. |
+| `customRelativeSearchFunction` | `Function` | `optional` | Implementing your own custom function for relative search. This is helpful when the object has nested objects. Custom function will accept one parameter 'searchValue' in which typed input value will be passed. Use the dropdown data available in yoor component for custom filtering. Example: `[{ sku: 12345, name: 'Apple', country: [{ name: 'USA'}, { name: 'China'}]}, { sku: 67890, name: 'Samsung', country: [{ name: 'USA'}, { name: 'China'}] }]`. The module will not search the country array as they are nested and the module would not predict the nested objects or arrays as they are based on project requirements. In this case you can write your own `customRelativeSearchFunction`. |
+| `setDefaultValueWithACustomFunction`| `Function` | `optional` | If `relativeSearch` is enabled, the setting up default value using `defaultValue` props will not work. Implement your own  `setDefaultValueWithACustomFunction` and return the object (not array of objects). The returned object should be available in `dropdownData` and should contain the `objectProperty` to allow the module to set default value.|
+
+Please note that `searchFn` in the props and `additionalData`.`relativeSearch`.`customRelativeSearchFunction` has minor difference. While you can use `searchFn` to completely customize the onSearch function, `customRelativeSearchFunction` can be used to search nested objects with a custom function. Based on the requirements, any of the both custom functions can be used based on how it suits the application.
 
 ```js
 const dropdownData = `[{ sku: 12345, name: 'Apple'}, { sku: 67890, name: 'Samsung'}]`
@@ -178,7 +181,7 @@ const dropdownData = `[{ sku: 12345, name: 'Apple'}, { sku: 67890, name: 'Samsun
 
 In the above example, only the sku attribute in the object will be searched.
 
-Checkout stackblitz example for good example.
+Checkout the stackblitz example to know how it works.
 
 It's your responsibility to check the performance impact when using the relative search for large data.
 
