@@ -139,7 +139,8 @@
 
   type RelativeSearchType = {
     includeOnly?: string[];
-    customFunction?: Function;
+    customRelativeSearchFunction?: Function;
+    setDefaultValueWithACustomFunction?: Function;
   }
   
   const props = withDefaults(defineProps<Iprops>(), {
