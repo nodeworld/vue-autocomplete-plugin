@@ -32,7 +32,7 @@ Documentation is now available on [modulejs.org](https://modulejs.org)
 
 | Package version | Description | 
 | :-------- | :-----------|
-| 1.0.2   | Recommended. Relative Search feature has been introduced to search the entire object. Refer API usage for details. Upgrading from lower version to 1.0.1 is safe without any configuration change. |
+| 1.0.2   | Recommended. Relative Search feature has been introduced to search the entire object. Refer API usage for details. Upgrading from lower version to 1.0.2 is safe without any configuration change. |
 | 1.0.1   | Updated `vite`  & `@vitejs/plugin-vue` versions with `^` in devDependencies as they continuously address vulnerabilties in their package. Upgrading from lower version to 1.0.1 is safe without any configuration change. |
 | 1.0.0   | Vue autocomplete search package |
 
@@ -161,8 +161,9 @@ In the above example, when searched with the inputs 12345 or Apple, first object
 `relativeSearch` also supports custom settings apart from boolean. Below attributes are supported in `relativeSearch` object.
 
 | Property | Type  | Required | Description |
-| `includeOnly` | `string[]` | `optional` | Searches only the value of mentioned keys or attributes available in the object. |
-| `customRelativeSearchFunction` | `Function` | `optional` | Implementing your own custom function for relative search. This is helpful when the object has nested objects. Custom function will accept one parameter 'searchValue' in which typed input value will be passed. Use the dropdown data available in yoor component for custom filtering. Example: `[{ sku: 12345, name: 'Apple', country: [{ name: 'USA'}, { name: 'China'}]}, { sku: 67890, name: 'Samsung', country: [{ name: 'USA'}, { name: 'China'}] }]`. The module will not search the country array as they are nested and the module would not predict the nested objects or arrays as they are based on project requirements. In this case you can write your own `customRelativeSearchFunction`. |
+| -------- | ------- | ------- | ------- |
+| `includeOnly` | `string[]` | `optional` | Searches only the value of mentioned keys or attributes available in the object.|
+| `customRelativeSearchFunction` | `Function` | `optional` | Implementing your own custom function for relative search. This is helpful when the object has nested objects. Custom function will accept one parameter 'searchValue' in which typed input value will be passed. Use the dropdown data available in yoor component for custom filtering. Example: `[{ sku: 12345, name: 'Apple', country: [{ name: 'USA'}, { name: 'China'}]}, { sku: 67890, name: 'Samsung', country: [{ name: 'USA'}, { name: 'China'}] }]`. The module will not search the country array as they are nested and the module would not predict the nested objects or arrays as they are based on project requirements. In this case you can write your own `customRelativeSearchFunction`.|
 | `setDefaultValueWithACustomFunction`| `Function` | `optional` | If `relativeSearch` is enabled, the setting up default value using `defaultValue` props will not work. Implement your own  `setDefaultValueWithACustomFunction` and return the object (not array of objects). The returned object should be available in `dropdownData` and should contain the `objectProperty` to allow the module to set default value.|
 
 Please note that `searchFn` in the props and `additionalData`.`relativeSearch`.`customRelativeSearchFunction` has minor difference. While you can use `searchFn` to completely customize the onSearch function, `customRelativeSearchFunction` can be used to search nested objects with a custom function. Based on the requirements, any of the both custom functions can be used based on how it suits the application.
@@ -369,7 +370,6 @@ Github Link - [vue-autocomplete-plugin](https://github.com/nodeworld/vue-autocom
 ## Roadmap
 
 - Multi select dropdown feature
-- Extensive search - Ability to search entire object in the list
 
 ## Other plugins
 
