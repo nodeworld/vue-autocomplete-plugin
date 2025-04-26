@@ -819,8 +819,8 @@
               filteredData.value = []
             });
           }
-          getSearchData = executeRelativeSearch();
         }
+        getSearchData = executeRelativeSearch();
         setSearchedData(getSearchData);
         return;
       }
