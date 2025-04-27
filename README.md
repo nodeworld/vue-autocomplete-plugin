@@ -18,6 +18,7 @@ It would also work from the version `3.2.13` in which `@vue/compiler-sfc` was me
 - Supports lazy loading and large dataset
 - Advanced and customizable scroll functionality
 - Supports custom events
+- Relative Search (Searching through the objects in the dropdown array.)
 - Keyboard navigation events to scroll through dropdown list
 - Virtual scrolling for large data sets
 - Supports custom classes and custom css styles at various DOM levels
